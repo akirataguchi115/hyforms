@@ -1,0 +1,142 @@
+#formAreaa{
+  position: relative;
+  top: 25vh;
+  left: 0%;
+  width: 70%;
+  margin-left: 0%;
+}
+#viewArea{
+  position: relative;
+  border-radius: 5px 5px;
+  padding: 5px;
+  height: auto;
+  width: 80%;
+  right: 0%;
+  top: 20vh;
+}
+#title{
+    position: relative;
+    top: 35vh;
+}
+#titleClicked{
+    position: relative;
+    top: 13vh;
+    transition: all 0.5s;
+}
+#titleInputClicked{
+    border-style: none;
+    background: none;
+    width: 1000px;
+    color: black;
+    font-size: xx-large;
+    text-align: center;
+}
+#titleInputButtonClicked{
+    visibility: hidden;
+}
+#formControlsHidden{
+    display: none;
+    position: fixed;
+    right: 1%;
+    bottom: 35vh;
+    border-radius: 5px 5px;
+    border-style: solid;
+    padding: 1em;
+    width: 250px;
+    height: 330px;
+}
+#formControlsVisible{
+    position: fixed;
+    right: 1%;
+    bottom: 35vh;
+    border-radius: 10px;
+    padding: 1em;
+    width: 250px;
+    height: 70px;
+    background-color: #333332;
+    color: white;
+    transition: all .5s;
+    overflow: hidden;
+}
+#formControlsVisible:hover{
+    height: 470px;
+}
+label{
+    text-align: left;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: rgb(0, 0, 0);
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container .checkmark:after {
+       top: 6px;
+      left: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+  }
+  label{
+      font-size: small;
+  }
+  #labelOption{
+    position: relative;
+    top: -1vh;
+    left: 10%;
+  }
+  #componentRemove{
+    position: relative;
+    left: 15%;
+    top: -2vh;
+  }
+
+  #radioText{
+    position: relative;
+    left: 11%;
+    top: -2vh;
+  }
+  #viewQuestion{
+    position: relative;
+    left: 48%
+  }
+  .viewInput{
+    position: relative;
+    left: 50%
+  }
