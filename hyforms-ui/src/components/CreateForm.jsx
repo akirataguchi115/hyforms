@@ -78,15 +78,99 @@ class CreateForm extends Component {
     publicFlag: false
   }
 
-  saveForm = () => {
-    //api to be implemented later
+saveForm = () => {
+    const endpoint = `/create/`;
+    const csrfToken = cookie.load('csrftoken');
+    let thisComp = this;
+    var formData = "";
+    if (csrfToken !== undefined ){ 
+      var formStoreArray = [...thisComp.state.formStoreArray];
+      var iterator = 0;
+      for (iterator; iterator < thisComp.state.componentSet.length; iterator++){
+        var slug = "";
+        var typeArray = thisComp.state.componentSet[iterator].type
+        if ( iterator !== thisComp.state.componentSet.length-1 ){
+          formData = formData + typeArray[0] + "----" + typeArray[1] + "----" + typeArray[2] + "--:--";
+        }
+        else{
+          formData = formData + typeArray[0] + "----" + typeArray[1] + "----" + typeArray[2];
+        }
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 30; i++ ) {
+          slug += characters.charAt(Math.floor(Math.random() * charactersLength));
+       }
+        formStoreArray.push ({ title: thisComp.state.title, slug:slug, formData: formData, owner: thisComp.state.currentUser.username })
+        thisComp.setState({ formStoreArray });
+      }
+      let lookupOptions = {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(formStoreArray[formStoreArray.length-1]),
+            credentials: 'include'
+      }
+      fetch ( endpoint, lookupOptions )
+      .then(function(response){
+        return response.json()
+      }).then(function(responseData){
+         return responseData
+      }).catch(function(error){
+        console.log("error", error)
+      })
+
+      const endpoint1 = `/fillform/`;
+
+      let lookupOptions1 = {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(formStoreArray[formStoreArray.length-1]),
+            credentials: 'include'
+      }
+      fetch ( endpoint1, lookupOptions1 )
+      .then(function(response){
+        return response.json()
+      }).then(function(responseData){
+         return responseData
+      }).catch(function(error){
+        console.log("error", error)
+      })
+      if (this.state.publicFlag === true){
+        this.savePublic(formStoreArray[formStoreArray.length-1])
+      }
+
+    }
   }
 
   savePublic = (publicData) => {
 
-    //public form api implementation to be done later.
+    const endpoint = `/listaddpublic/`;
+    const csrfToken = cookie.load('csrftoken');
+    let lookupOptions = {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(publicData),
+            credentials: 'include'
+      }
+      fetch ( endpoint, lookupOptions )
+      .then(function(response){
+        return response.json()
+      }).then(function(responseData){
+         return responseData
+      }).catch(function(error){
+        console.log("error", error)
+      })
 
   }
+
 
   onEnterPress = (e) => {
     if (e.key === "Enter"){
@@ -109,8 +193,53 @@ class CreateForm extends Component {
 }
 
   viewForm = (e) => {
-    // Add view form functionality later
+    var view = true;
+    var currentComponents = [...this.state.componentSet];
+    var viewSet = [];
+    var iterator = 0;
+    var component;
+    for (iterator; iterator < currentComponents.length; iterator++){
+      var interpreter = currentComponents[iterator].type;
+      var componentType = interpreter[0];
+      var componentID = interpreter[1];
+      var componentValue = interpreter[2];
+      if (componentType === "question"){
+        component=
+        <div>
+          <br /><br /><br /><label style = { labelSize } id = "viewQuestion">{ componentValue } </label><br/>
+        </div>;
+      }
+      if (componentType === "radio"){
+        component = 
+        <div>
+         <label style = { viewRadioStyle } className="container viewRadio" id = { componentID }>
+            <input type="radio" name= "sdfasd" value = { componentValue } />
+            <label style = { labelSize }> { componentValue } </label>
+            <span class="checkmark"></span>
+          </label>
+        </div>;
+      }
+      if (componentType === "singleLine"){
+        component =
+        <div key = {componentID}>
+                        <div className="ui input viewInput">            
+                          <input onChange = { this.updateComponentValue } id = {componentID} size="50" type="text" placeholder="Your answer"/>
+                        </div><br/><br/><br/>
+                      </div>;
+      }
+      if (componentType === "multiLine"){
+        component =
+        <div key = {componentID}>
+                        <div className="field">            
+                          <textarea size="50" type="text" placeholder="Your answer"/>
+                        </div><br/><br/><br/>
+                      </div>;
+      }
+      viewSet.push({ displayComponent:  component });
+    }
+    this.setState ({ viewSet, view });
   }
+
 
   titleClicked = () => {
     var titleClicked = true;
@@ -260,12 +389,53 @@ class CreateForm extends Component {
   }
 
   viewDecide = () =>{
-    //Probably view feature will need a flag, will keep this here.
+    var view = this.state.view;
+    if (view === false ){
+      this.viewForm();
+    }
+    else{
+      view = false;
+      this.setState ({ view });
+    }
+    
   }
 
+    componentDidMount(){
+    console.log(localStorage.getItem('token'))
+  const script = document.createElement("script");
+  script.src = "https://kit.fontawesome.com/0467bd4fc9.js";
+  script.async = true;
+  document.body.appendChild(script);
+  const endpoint = '/current_user/';
+    let thisComp = this;
+    let lookupOptions = {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch ( endpoint, lookupOptions )
+    .then(function(response){
+      return response.json()
+    }).then(function(responseData){
+      thisComp.setState({
+        currentUser: responseData
+      })
+    }).catch(function(error){
+      console.log("error", error)
+    })
+}
   makePublic = () => {
-    // Planning on adding a public form feature.
+    var publicFlag
+    if (this.state.publicFlag === false){
+      publicFlag = true
+    }
+    if (this.state.publicFlag === true){
+      publicFlag = false
+    }
+    this.setState({ publicFlag })
   }
+  
   render() { 
     console.log(this.state.currentUser.username)
     return (
@@ -289,7 +459,7 @@ class CreateForm extends Component {
               <option value="multiLine">Multi Line</option>
             </select><br/><br/>
             <button className="ui secondary button" onClick={  () => this.addComponent("subComponent") }> Add Component </button><br/><br/>
-            <button className="ui secondary button">View Form</button><br/><br/>
+            <button className="ui secondary button" onClick={ this.viewDecide }> { this.state.view === false ? "View Form" : "Edit Form" } </button><br/><br/>
             <div class="ui checkbox">
               <input type="checkbox" id = "save" name="save" onChange = { this.makePublic } />
               <label for="save"><font color="white">Make this a public template</font></label>
@@ -307,6 +477,14 @@ class CreateForm extends Component {
               </div>
             </div>
             </center>
+            <div id = "viewArea" style = { this.state.view === false ? hideArea :  null }>
+            {
+              this.state.viewSet.map
+              (
+                eachComponent => eachComponent.displayComponent
+              )
+            }
+            </div>
       </div>
       </React.Fragment>
     );
