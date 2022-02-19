@@ -15,3 +15,8 @@ class PublicFormData(models.Model):
 	slug		= models.SlugField(null=True, blank=True)
 	formData 	= models.CharField(default="m", max_length=10000)
 	owner 		= models.CharField(max_length=120)
+
+class FormFiller(models.Model):
+	title		= models.CharField(max_length=120)
+	slug		= models.SlugField(null=True, blank=True)
+	formData 	= models.CharField(default="m", max_length=10000)

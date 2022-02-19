@@ -76,7 +76,7 @@ class HomePage extends Component{
 		                		</div>
 	                		</h1>
 	                		<tr className="mt-4">
-	                			<td className="p-3 "><Link to="/create"><button className = "btn btn-default btn-block btn-primary">Get Started</button></Link></td>
+	                			<td className="p-3 "><Link to="/hyforms/create"><button className = "btn btn-default btn-block btn-primary">Get Started</button></Link></td>
 	                			<td className="p-3 "><a href="#about"><button className = "btn btn-default btn-block btn-primary">Why HYForms</button></a></td>
 	                		</tr>
 				      </div>

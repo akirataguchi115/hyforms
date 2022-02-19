@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <BrowserRouter>
           <Routes>
-          <Route path='/' element={<HomePage/>}/>
-            <Route path='/create' element={<CreateForm/>} />
+          <Route path='/hyforms' element={<HomePage/>}/>
+            <Route path='/hyforms/create' element={<CreateForm/>} />
           </Routes>
         </BrowserRouter>
     );

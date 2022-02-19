@@ -7,7 +7,8 @@ from rest_framework import serializers
 
 from .models import (
 	FormData,
-    PublicFormData
+    PublicFormData,
+    FormFiller
 )
 class UserSerializer(serializers.ModelSerializer):
 
@@ -36,6 +37,15 @@ class PublicFormDataSerializer(serializers.ModelSerializer):
 			'slug',
 			'formData',
 			'owner'
+		]
+
+class FormFillerSerializer(serializers.ModelSerializer):
+	class Meta:
+		model  = FormFiller
+		fields = [
+			'title',
+			'slug',
+			'formData',
 		]
 
 class UserSerializerWithToken(serializers.ModelSerializer):

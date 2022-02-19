@@ -126,3 +126,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'), 
 ]
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
+CORS_URLS_REGEX = r'^/api.*'
+CORS_ORIGIN_ALLOW_ALL = True
+
+     
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}

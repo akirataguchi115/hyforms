@@ -7,7 +7,7 @@ import cookie from 'react-cookies';
 import { Link } from 'react-router-dom';
 
 
-const sessionCookie = "undefined";
+const sessionCookie = cookie.load('csrftoken');
 
 
 const radioText = {

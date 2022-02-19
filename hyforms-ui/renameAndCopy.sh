@@ -43,3 +43,8 @@ cp $fileName ../../../../staticfiles/css
 cd ../../../../staticfiles/css
 mv $fileName "hy-forms1.css"
 cd -
+
+echo ""
+echo "Moving Image Files"
+echo ""
+cp $dirName/media/* ../../../../staticfiles/media/

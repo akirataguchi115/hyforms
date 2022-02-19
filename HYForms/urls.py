@@ -15,15 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from rest_framework_jwt.views import obtain_jwt_token
+from django.views.generic import TemplateView
 from .views import (
     logoutUser,
     signUpUser,
     loginUser,
 )
+from APIManager.views import (
+    SaveFormAPIView,
+    CreateListPublicFormAPIView,
+    FormFillPropsRetrieveAPIView,
+    FormFillPropsAPIView
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('loginUser/', loginUser),
     path('signUpUser/', signUpUser),
     path('logoutUser/', logoutUser),
+	re_path(r'^hyforms/', TemplateView.as_view(template_name='react.html')),
+    path('fillform/', FormFillPropsAPIView.as_view(), name = 'fill-form'),
+    re_path(r'fillform/(?P<slug>[\w-]+)/$', FormFillPropsRetrieveAPIView.as_view(), name = 'fill-form'),
+    path('create/', SaveFormAPIView.as_view(), name='form-create'),
+    path('listaddpublic/', CreateListPublicFormAPIView.as_view(), name = 'public-form'),
 ]
