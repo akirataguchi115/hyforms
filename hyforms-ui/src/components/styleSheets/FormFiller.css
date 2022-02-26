@@ -1,0 +1,14 @@
+#formTitle{
+	font-size: xx-large;
+}
+.banner{
+  background-color: #333332;
+  min-height: 300px;
+  width:95%;
+  padding:8em;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+    margin-left: 5.2%;
+
+}

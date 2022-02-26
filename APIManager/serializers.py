@@ -4,18 +4,12 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework import serializers
-
 from .models import (
 	FormData,
-    PublicFormData,
-    FormFiller
+	FormFiller,
+    FilledData,
+    PublicFormData
 )
-class UserSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = User
-		fields = ('username',)
-
 
 class FormDataSerializer(serializers.ModelSerializer):
 	
@@ -47,6 +41,23 @@ class FormFillerSerializer(serializers.ModelSerializer):
 			'slug',
 			'formData',
 		]
+
+class FilledDataSerializer(serializers.ModelSerializer):
+	class Meta:
+		model  = FilledData
+		fields = [
+			'title',
+			'slug',
+			'filledData',
+		]
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = User
+		fields = ('username',)
+
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 

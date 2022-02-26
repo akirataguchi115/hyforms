@@ -126,6 +126,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'), 
 ]
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
+
 CORS_URLS_REGEX = r'^/api.*'
 CORS_ORIGIN_ALLOW_ALL = True
 

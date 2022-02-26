@@ -24,9 +24,15 @@ from .views import (
 )
 from APIManager.views import (
     SaveFormAPIView,
-    CreateListPublicFormAPIView,
     FormFillPropsRetrieveAPIView,
-    FormFillPropsAPIView
+    CreateListPublicFormAPIView,
+    FormFillPropsAPIView,
+    FormFilledDataInsertAPIView,
+    formRUDView,
+    FormAPIView,
+    ViewPublicFormAPIView,
+    current_user, 
+    UserList
 )
 
 
@@ -40,4 +46,11 @@ urlpatterns = [
     re_path(r'fillform/(?P<slug>[\w-]+)/$', FormFillPropsRetrieveAPIView.as_view(), name = 'fill-form'),
     path('create/', SaveFormAPIView.as_view(), name='form-create'),
     path('listaddpublic/', CreateListPublicFormAPIView.as_view(), name = 'public-form'),
+    path(r'formpush/', FormFilledDataInsertAPIView.as_view(), name = 'fill-form'),
+    re_path(r'api/(?P<slug>[\w-]+)/$', formRUDView.as_view(), name = 'form-rud'),
+    path('api/', FormAPIView.as_view(), name='form-view'),
+    re_path(r'viewpublic/(?P<slug>[\w-]+)/$', ViewPublicFormAPIView.as_view(), name = 'public-form'),
+    path('token-auth/', obtain_jwt_token),
+    path('current_user/', current_user),
+    path('users/', UserList.as_view()),
 ]
