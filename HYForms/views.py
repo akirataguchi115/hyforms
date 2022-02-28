@@ -6,6 +6,12 @@ from django.http import HttpResponseRedirect
 
 
 # Create your views here.
+
+@login_required(login_url='/loginUser/')
+def homePage(request):
+	response = redirect('/hyforms/')
+	return response
+
 def loginUser(request):
 	context = {}
 	if request.method == 'POST':

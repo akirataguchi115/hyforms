@@ -21,6 +21,7 @@ from .views import (
     logoutUser,
     signUpUser,
     loginUser,
+    homePage,
 )
 from APIManager.views import (
     SaveFormAPIView,
@@ -53,4 +54,10 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
     path('current_user/', current_user),
     path('users/', UserList.as_view()),
+
+    #django
+    path('', homePage),
+    path('loginUser/', loginUser),
+    path('signUpUser/', signUpUser),
+    path('logoutUser/', logoutUser),
 ]

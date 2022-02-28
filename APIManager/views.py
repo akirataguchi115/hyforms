@@ -37,10 +37,6 @@ class SaveFormAPIView(generics.CreateAPIView):
     serializer_class    = FormDataSerializer
     lookup_field        = 'slug'
 
-class CreateListPublicFormAPIView(generics.ListCreateAPIView):
-    queryset            = PublicFormData.objects.all()
-    serializer_class    = PublicFormDataSerializer
-    lookup_field        = 'slug'
 class formRUDView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field 		= 'slug'
     serializer_class 	= FormDataSerializer
@@ -64,10 +60,20 @@ class FormFilledDataInsertAPIView(generics.CreateAPIView):
     serializer_class    = FilledDataSerializer
     lookup_field        = 'slug'
     permission_classes  = []
+class FormFilledDataListAPIView(generics.ListAPIView):
+    queryset            = FilledData.objects.all()
+    serializer_class    = FilledDataSerializer
+    lookup_field        = 'slug'
+class CreateListPublicFormAPIView(generics.ListCreateAPIView):
+    queryset            = PublicFormData.objects.all()
+    serializer_class    = PublicFormDataSerializer
+    lookup_field        = 'slug'
 class ViewPublicFormAPIView(generics.RetrieveAPIView):
     queryset            = PublicFormData.objects.all()
     serializer_class    = PublicFormDataSerializer
     lookup_field        = 'slug'
+
+
 @api_view(['GET'])
 def current_user(request):
     """
