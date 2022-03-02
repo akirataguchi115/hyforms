@@ -23,6 +23,9 @@ Although this kicked off as an idea for my full stack web development project in
 - Run `npm install` to install the node packages.
 - Run `npm start` to run the UI 
 
+### For a small demo on the basics of the application, please refer to the instrutions [here](https://github.com/barunespadhy/hyforms/blob/main/staticfiles/instructions.pdf)
+
+
 ### Number of hours dedicated:
 
 | Task                                                    | Hours  |
