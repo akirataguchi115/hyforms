@@ -9,8 +9,9 @@ Although this kicked off as an idea for my full stack web development project in
 
 - Make sure you have python3 installed. This project was created using 3.9.2
 - Next two steps are optional. If the optional steps are done, it will create an isolated environment with the packages and versions as specified in `requirements.txt`. If this is not done, the required packages might conflict with your existing packages. This is recommended, but not required.
-- (Optional) Create a virtual environment using `python3 -m pip install virtualenv`
-- (Optional) Activate your virtualenv. For linux/mac: `source [virtual_env_name]/bin/activate`
+- (Optional) Install virtualenv package to create an isolated environment for running the project: `python3 -m pip install virtualenv`
+- (Optional) Create a virtual environment using `python3 -m virtualenv hyforms`
+- (Optional) Activate your virtualenv. Go to the root directory and then run: `source hyforms/bin/activate` (For linux/mac)
 - Install required dependencies using pip. The required libraries are in requirements.txt, so: `pip install -r requirements.txt`
 
 ### Run the django server:
