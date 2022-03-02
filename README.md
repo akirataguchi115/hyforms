@@ -32,8 +32,10 @@ Although this kicked off as an idea for my full stack web development project in
 | Homepage, User auth                                     | 5      |
 | Creating application design*                            | 25     |
 | Creating forms                                          | 23     |
+| Merging Django and React                                | 15     |
 | Saving forms, public concept                            | 15     |
 | Editing Forms                                           | 20     |
 | Form Fillup and saving data                             | 20     |
 | Viewing Responses                                       | 15     |
 | Final cleanup, bug fixing, putting things into context  | 15     |
+| Total                                                   | 175    |
