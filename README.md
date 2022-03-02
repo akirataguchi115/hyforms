@@ -14,6 +14,7 @@ Although this kicked off as an idea for my full stack web development project in
 - Install required dependencies using pip. The required libraries are in requirements.txt, so: `pip install -r requirements.txt`
 
 ### Run the django server:
+- Migrate the DB by running `python manage.py makemigrations` and then `python manage.py migrate` (Otherwise login will fail)
 - In the root folder, run `python manage.py runserver`
 
 ### For accessing the UI:
@@ -39,3 +40,5 @@ Although this kicked off as an idea for my full stack web development project in
 | Viewing Responses                                       | 15     |
 | Final cleanup, bug fixing, putting things into context  | 15     |
 | Total                                                   | 175    |
+
+\*There were time when I thought of an implementation, tried it out, and in between I realised that it is not possible, so I had to scrape it off and start afresh with a different concept.
