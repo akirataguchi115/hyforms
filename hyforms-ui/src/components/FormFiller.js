@@ -4,6 +4,7 @@ import './styleSheets/semantic.css';
 import './javaScript/semantic.js';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
+import  { Redirect } from 'react-router-dom'
 
 
 const labelSize = {
@@ -100,6 +101,9 @@ class FormFiller extends Component {
 	    }).catch(function(error){
 	      console.log("error", error)
 	    })
+	    alert("Thank you! Your response has been submitted");
+	    return <Redirect to='/hyforms'/>
+
   	}
   	formBuilder = () =>{
   		var thisComp = this;

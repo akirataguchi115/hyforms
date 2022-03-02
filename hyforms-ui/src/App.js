@@ -6,6 +6,8 @@ import EditForm from './components/EditForm';
 import FormFiller from './components/FormFiller';
 import PublicForms from './components/PublicForms';
 import ViewPublic from './components/ViewPublic';
+import logoutUser from './components/logoutUser';
+import ViewResponse from './components/ViewResponse';
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 class App extends Component {
@@ -20,6 +22,8 @@ class App extends Component {
             <Route exact path='/hyforms/fill/:slug' component={FormFiller}/>
             <Route exact path='/hyforms/publicforms' component={PublicForms}/>
             <Route exact path='/hyforms/publicforms/:slug' component={ViewPublic}/>
+            <Route exact path='/hyforms/viewresponse/:slug' component={ViewResponse}/>
+            <Route exact path='/logoutUser' component={logoutUser}/>
           </Switch>
         </BrowserRouter>
     );

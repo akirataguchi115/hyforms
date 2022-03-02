@@ -130,6 +130,31 @@ class ViewResponse extends Component {
 	console.log(this.state.relevantData)
 		return(
 			<React.Fragment>
+			<nav id="main-nav">
+            <div className="row">
+              <div className="container">
+
+                <div className="responsive"><i data-icon="m" className="ion-navicon-round"></i></div>
+                <ul className="nav-menu list-unstyled">
+                  <Link to={"/hyforms"}>
+                    <li><a className="smoothScroll">Home</a></li>
+                  </Link>
+                  <Link to={"/hyforms/create"}>
+                    <li><a className="smoothScroll">Create</a></li>
+                  </Link>
+                  <Link to={"/hyforms/myforms"}>
+                    <li><a className="smoothScroll">Your Forms</a></li>
+                  </Link>
+                  <Link to={"/hyforms/publicforms"}>
+                    <li><a className="smoothScroll">Browse Templates</a></li>
+                  </Link>
+                  <Link to={"/logoutUser"}>
+                    <li><a className="smoothScroll">{this.state.currentUser.username}</a></li>
+                  </Link>
+                </ul>
+              </div>
+            </div>
+        </nav>
 	         	<div className = "banner">
 		           <font color="white">
 		             <center>

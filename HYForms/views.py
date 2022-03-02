@@ -6,7 +6,10 @@ from django.http import HttpResponseRedirect
 
 
 # Create your views here.
-
+from .forms import (
+	SignIn,
+	SignUp,
+)
 @login_required(login_url='/loginUser/')
 def homePage(request):
 	response = redirect('/hyforms/')
@@ -49,6 +52,24 @@ def signUpUser(request):
 				user = User.objects.create_user(name, email, password)
 				print ("User created")
 	return render (request, 'signUpUser.html')
+
+def loginUser(request):
+	context = {}
+	if request.method == 'POST':
+		form = SignIn(request.POST or None)
+		if form.is_valid():
+			
+			tempDict = form.cleaned_data
+			email = tempDict['email']
+			password = tempDict['password']
+			print(tempDict)
+			user = authenticate(username=email, password=password)
+			if user is not None:
+				login(request, user)
+				return redirect ("/")
+			else:
+				context = { 'loginFlag': '1' }
+	return render (request, 'loginUser.html', context)
 
 def logoutUser(request):
 	logout(request)

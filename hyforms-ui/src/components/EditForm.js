@@ -21,6 +21,9 @@ const save = {
   top: '-8%'
   
 }
+const formControls = {
+  color: 'white'
+}
 const saveInput = {
   position: 'relative',
   top: '15%'
@@ -393,6 +396,7 @@ class EditForm extends Component {
       })
 
     }
+    alert("Form has been saved!");
   }
 
   getFormState = (slug) =>{
@@ -498,6 +502,31 @@ class EditForm extends Component {
     }
     return (
       <React.Fragment>
+      <nav id="main-nav">
+            <div className="row">
+              <div className="container">
+
+                <div className="responsive"><i data-icon="m" className="ion-navicon-round"></i></div>
+                <ul className="nav-menu list-unstyled">
+                  <Link to={"/hyforms"}>
+                    <li><a className="smoothScroll">Home</a></li>
+                  </Link>
+                  <Link to={"/hyforms/create"}>
+                    <li><a className="smoothScroll">Create</a></li>
+                  </Link>
+                  <Link to={"/hyforms/myforms"}>
+                    <li><a className="smoothScroll">Your Forms</a></li>
+                  </Link>
+                  <Link to={"/hyforms/publicforms"}>
+                    <li><a className="smoothScroll">Browse Templates</a></li>
+                  </Link>
+                  <Link to={"/logoutUser"}>
+                    <li><a className="smoothScroll">{this.state.currentUser.username}</a></li>
+                  </Link>
+                </ul>
+              </div>
+            </div>
+        </nav>
         <div id="banner">
         </div>
         <center>
@@ -508,7 +537,7 @@ class EditForm extends Component {
             <button className="ui secondary button" onClick = {this.titleClicked} id="titleInputButtonClicked" >Go!</button>
           </div>
           <div id="formControlsVisible">
-            <label><h4>Form Controls</h4></label><br/><br/><br/>
+            <label><h4 style = {formControls}>Form Controls</h4></label><br/><br/><br/>
             <label>Current question: { this.state.focusedQuestion} </label><br/><br/>
             <button className="ui secondary button" onClick={  () => this.addComponent("question") }> New Question </button><br/><br/>
             <select onChange = { this.changeComponent } value = {this.state.selectedComponent} className="ui selection dropdown">

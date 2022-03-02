@@ -73,7 +73,11 @@ class ViewPublicFormAPIView(generics.RetrieveAPIView):
     serializer_class    = PublicFormDataSerializer
     lookup_field        = 'slug'
 
-
+class FormFilledDataListAPIView(generics.ListAPIView):
+    queryset            = FilledData.objects.all()
+    serializer_class    = FilledDataSerializer
+    lookup_field        = 'slug'
+    
 @api_view(['GET'])
 def current_user(request):
     """
