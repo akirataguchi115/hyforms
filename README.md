@@ -5,7 +5,7 @@ A lot of people need to collect data for various reasons. People often resort to
 
 Although this kicked off as an idea for my full stack web development project in my 2nd semester of my masters at Helsingin Yliopisto (hence the name HYForms), I want this to be much bigger than just a project. I would want this to grow in the opensource world. I envision this to have a community, deploying this solution on their servers to collect information or use it as they please.
 
-### This project is also availalbe on herolu as a demo. Please access it from here: [hyforms.herokuapp.com](https://hyforms.herokuapp.com)
+### This project is also availalbe on Heroku as a demo. Please access it from here: [hyforms.herokuapp.com](https://hyforms.herokuapp.com)
 
 ### To run the django server, first create the environment like so:
 
